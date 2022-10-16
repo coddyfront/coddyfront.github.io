@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JS Кликер</title>
+</head>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	main {
+		width: 400px;
+		margin: 50px auto;
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		border-radius: 15px;
+		background-color: rgb(247, 195, 134);
+		font-family: Verdana, sans-serif;
+	}
+
+	h3 {
+		text-align: center;
+		padding: 5px
+	}
+
+	p {
+		margin-top: 20px;
+	}
+
+	#buttons_div {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+	}
+
+	button {
+		color: white;
+		border: none;
+		border-radius: 15px;
+		cursor: pointer;
+		margin-top: 50px;
+		padding: 15px 32px;
+		font-size: 20px;
+		background-color: #4CAF50;
+	}
+</style>
+
+<body>
+	<main>
+		<p id="result">Прошлый результат: 0</p>
+		<p id="clicks">Кликов: 0</p>
+		<div id="buttons_div">
+			<button id="click">Клик</button>
+			<button id="start">Старт</button>
+		</div>
+	</main>
+	<script>
+		let pResult = document.getElementById('result')
+		let pClicks = document.getElementById('clicks')
+		let bClick = document.getElementById('click');
+		let bStart = document.getElementById('start');
+
+		let clicks = 0
+		let result = 0
+		let started = false
+
+		function clicker() {
+			if (started == true) {
+				clicks += 1
+				pClicks.textContent = "Кликов: " + clicks
+			} else {
+				alert("Вы не начали игру")
+			}
+		}
+
+		function startTimer() {
+			started = true
+			window.setTimeout(() => {
+				alert("Вы накликали " + clicks + " , попробуйте улучшить ваш результат")
+				result = clicks
+				pClicks.textContent = "Кликов: 0"
+				pResult.textContent = "Прошлый результат: " + result
+				clicks = 0
+				started = false
+			}, 5000)
+		}
+
+		bClick.addEventListener('click', clicker)
+		bStart.addEventListener('click', startTimer)
+
+	</script>
+	<script type="text/javascript" href="script.js"></script>
+	<div></div>
+</body>
+</html>
